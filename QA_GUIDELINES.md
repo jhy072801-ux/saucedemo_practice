@@ -53,8 +53,19 @@
   - Selector: `page.getByRole('combobox')`
 
 ### [Section: E2E Checkout]
-- **TC-11 (Full Checkout Flow):** - Steps: Add 2 items -> Click Cart -> Checkout -> Enter Personal Info -> Finish.
-  - Assert: Final header text is `Thank you for your order!`.
+- **TC-11 (Checkout with Valid Info):** - Steps: Add 2 items -> Click Cart -> Checkout -> Enter valid personal info (First Name, Last Name, Postal Code) -> Click Finish.
+  - Assert: Final page displays with "Thank you for your order!" header
+  - Selector: `[data-test="first-name"]`, `[data-test="last-name"]`, `[data-test="postal-code"]` for input fields
+- **TC-16 (Checkout with Invalid/Missing Info):** - Steps: Go to checkout -> Try to submit with missing or invalid personal info (empty fields or incorrect format) -> Verify error
+  - Assert: Error message displays for missing/invalid fields
+  - Test cases: empty first name only, empty last name only, empty postal code only, all fields empty
+  - Selector: `[data-test="error"]` for error messages
+- **TC-17 (Cancel Checkout):** - Steps: Add items -> Go to checkout -> Enter info -> Click "Cancel" button
+  - Assert: Redirected back to inventory page (`/inventory.html`)
+  - Selector: `[data-test="cancel"]` for cancel button
+- **TC-18 (Complete Checkout & Back Home):** - Steps: Complete checkout flow with valid info -> Click "Finish" -> Verify success page -> Click "Back Home" button
+  - Assert: Redirected to inventory page (`/inventory.html`) and cart is empty
+  - Selector: `[data-test="back-to-products"]` or `.back-button` for back home button
 
 ### [Section: Cart Management]
 - **TC-12 (Add to Cart):** - Steps: Click "Add to cart" button on a product -> Check cart badge updates
