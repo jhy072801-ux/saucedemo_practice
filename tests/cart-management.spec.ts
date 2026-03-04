@@ -14,9 +14,10 @@ test.describe('Cart Management Tests', () => {
   let cartPage: CartPage;
 
   test.beforeEach(async ({ page }) => {
+    const loginPage = new LoginPage(page);
     inventoryPage = new InventoryPage(page);
     cartPage = new CartPage(page);
-    const loginPage = new LoginPage(page);
+    
     await loginPage.loginStandardUser();
   });
 
