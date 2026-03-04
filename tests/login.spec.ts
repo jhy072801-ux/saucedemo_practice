@@ -8,8 +8,7 @@ import { test, expect, Page } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { LOGIN_ERRORS } from '../constants/messages';
 
-// 로그인 헬퍼는 utils/auth.ts에서 가져와서 중복 제거
-
+// POM 패턴 적용 LoginPage 클래스 사용하여 로그인 테스트 작성
 test.describe('Login Tests', () => {
   let loginPage : LoginPage;
 
@@ -34,7 +33,7 @@ test.describe('Login Tests', () => {
 
   test('TC-03 (Missing Inputs) - 입력값 없이 로그인 버튼 클릭 시 오류 메시지 확인', async ({ page }) => {
     // 사용자명과 비밀번호를 비운 상태에서 로그인 버튼 클릭
-    await page.locator('[data-test="login-button"]').click();
+    await loginPage.loginButton.click();
     await expect(loginPage.errorMessage).toBeVisible();
     await expect(loginPage.errorMessage).toContainText(LOGIN_ERRORS.USER_REQUIRED);
   });

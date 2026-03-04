@@ -31,9 +31,4 @@ export class LoginPage {
     await this.login(process.env.SAUCE_USERNAME ?? '', process.env.SAUCE_ACCESS_KEY ?? '');
     await this.page.waitForURL(/\/inventory\.html$/);
   }
-
-  async getErrorMessage(){
-    await this.errorMessage.waitFor({state: 'visible'});
-    return await this.errorMessage.textContent();
-  }
 }
