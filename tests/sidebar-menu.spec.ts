@@ -7,13 +7,17 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { SidebarComponent } from '../pages/components/SidebarComponent';
+import { InventoryPage } from '../pages/InventroyPage';
 
 test.describe('Sidebar Menu Tests', () => {
   let sidebar: SidebarComponent;
+  let inventory: InventoryPage;
+  let loginPage: LoginPage;
 
   test.beforeEach(async ({ page }) => {
-    const loginPage = new LoginPage(page);
+    loginPage = new LoginPage(page);
     sidebar = new SidebarComponent(page);
+    inventory = new InventoryPage(page);
     
     await loginPage.loginStandardUser();
   });
@@ -36,21 +40,21 @@ test.describe('Sidebar Menu Tests', () => {
 
   test('TC-05c (Reset App State) - 카트 초기화 확인', async ({ page }) => {
     // 아이템 추가
-    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-    await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
+    await inventory.addToCart('sauce-labs-backpack');
+    await expect(inventory.cartBadge).toHaveText('1');
 
     // 리셋 실행
     await sidebar.resetAppState();
     
     // 검증
-    await expect(page.locator('.shopping_cart_badge')).toHaveCount(0);
+    await expect(inventory.cartBadge).toHaveCount(0);
   });
 
   test('TC-06 (Logout) - 로그아웃 후 리다이렉트 확인', async ({ page }) => {
     await sidebar.logout();
 
     await expect(page).toHaveURL(/\/$/);
-    await expect(page.locator('[data-test="login-button"]')).toBeVisible();
+    await expect(loginPage.loginButton).toBeVisible();
   });
 });
 
