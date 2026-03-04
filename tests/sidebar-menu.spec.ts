@@ -1,7 +1,7 @@
 // @reference: QA_GUIDELINES.md
 // @section: [Section: Product Filter]
 // 위 가이드라인의 셀렉터 규칙과 TC-05 ~ TC-06 로직을 준수하여 사이드바 메뉴 Playwright 테스트 코드를 작성해줘. 
-// 반복되는 로그인은 utils/auth.ts에 있는 코드를 활용해서 중복을 줄여주고 beforeEach에서 처리해줘.
+// 반복되는 로그인은 beforeEach에서 처리해줘.
 // 각 ts마다 한글로 어떤 테스트 코드인지 주석도 달아줘야해
 
 import { test, expect } from '@playwright/test';

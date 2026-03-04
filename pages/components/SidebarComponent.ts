@@ -1,3 +1,4 @@
+// 메인 페이지 사이드메뉴 컴포넌트에 관한 코드입니다.
 import { Page, Locator } from '@playwright/test';
 
 export class SidebarComponent {
