@@ -6,6 +6,7 @@
 
 import { test, expect, Page } from '@playwright/test';
 import { login } from './utils/auth';
+import { LOGIN_ERRORS } from '../constants/messages';
 
 // 로그인 헬퍼는 utils/auth.ts에서 가져와서 중복 제거
 
@@ -16,18 +17,18 @@ test.describe('Login Tests', () => {
 
   test('TC-01 (Invalid Username) - 잘못된 사용자명 입력 시 오류 메시지 확인', async ({ page }) => {
     // 잘못된 사용자명으로 로그인 시도
-    await login(page, 'invalid_user', 'secret_sauce');
+    await login(page, 'invalid_user', process.env.SAUCE_ACCESS_KEY ?? '');
     const error = page.locator('[data-test="error"]');
     await expect(error).toBeVisible();
-    await expect(error).toContainText('Username and password do not match');
+    await expect(error).toContainText(LOGIN_ERRORS.INVALID_MATCH);
   });
 
   test('TC-02 (Invalid Password) - 잘못된 비밀번호 입력 시 오류 메시지 확인', async ({ page }) => {
     // 잘못된 비밀번호로 로그인 시도
-    await login(page, 'standard_user', 'wrong_password');
+    await login(page, process.env.SAUCE_USERNAME ?? '', 'wrong_password');
     const error = page.locator('[data-test="error"]');
     await expect(error).toBeVisible();
-    await expect(error).toContainText('Username and password do not match');
+    await expect(error).toContainText(LOGIN_ERRORS.INVALID_MATCH);
   });
 
   test('TC-03 (Missing Inputs) - 입력값 없이 로그인 버튼 클릭 시 오류 메시지 확인', async ({ page }) => {
@@ -35,12 +36,12 @@ test.describe('Login Tests', () => {
     await page.locator('[data-test="login-button"]').click();
     const error = page.locator('[data-test="error"]');
     await expect(error).toBeVisible();
-    await expect(error).toContainText('Username is required');
+    await expect(error).toContainText(LOGIN_ERRORS.USER_REQUIRED);
   });
 
   test('TC-04 (Login Success) - 정상적인 로그인 후 인벤토리 페이지로 이동 및 목록 확인', async ({ page }) => {
     // 올바른 자격 증명으로 로그인
-    await login(page, 'standard_user', 'secret_sauce');
+    await login(page, process.env.SAUCE_USERNAME ?? '', process.env.SAUCE_ACCESS_KEY ?? '');
     await expect(page).toHaveURL(/\/inventory\.html$/);
     const inventoryList = page.locator('.inventory_list');
     await expect(inventoryList).toBeVisible();
