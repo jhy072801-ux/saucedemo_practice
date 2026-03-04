@@ -1,7 +1,7 @@
 // @reference: QA_GUIDELINES.md
 // @section: [Section: E2E Test]
 // 위 가이드라인의 셀렉터 규칙과 TC-11, TC-16 ~ TC-18 로직을 준수하여 E2E 테스트 코드 작성
-// 반복되는 로그인은 utils/auth.ts에서 가져와 중복 제거
+// 반복되는 로그인은 beforeEach에서 처리하여 중복 제거
 // 각 테스트마다 한글 주석으로 동작 설명
 
 import { test, expect } from '@playwright/test';
