@@ -52,8 +52,23 @@
 - **TC-10 (Price High-Low):** Select `hilo` -> Assert first item price is `$49.99`.
   - Selector: `page.getByRole('combobox')`
 
+### [Section: Cart Management]
+- **TC-11 (Add to Cart):** - Steps: Click "Add to cart" button on a product -> Check cart badge updates
+  - Assert: Cart badge shows correct item count
+  - Selector: `[data-test="add-to-cart-..."]` for add buttons
+- **TC-12 (View Cart):** - Steps: Add item to cart -> Click cart icon -> Verify cart page loads
+  - Assert: Cart page displays, added product is visible with correct name and price
+  - Selector: `.shopping_cart_link` for cart button, `.cart_item_label` for product names
+- **TC-13 (Continue Shopping):** - Steps: On cart page -> Click "Continue Shopping" button -> Verify inventory page
+  - Assert: Redirected to `/inventory.html` and product list is visible
+  - Selector: `[data-test="continue-shopping"]` for continue button
+- **TC-14 (Remove from Cart):** - Steps: On cart page with items -> Click "Remove" button -> Verify item removed
+  - Assert: Item removed from cart and cart badge decreases
+  - Selector: `[data-test="remove-..."]` for remove buttons
+---
+
 ### [Section: E2E Checkout]
-- **TC-11 (Checkout with Valid Info):** - Steps: Add 2 items -> Click Cart -> Checkout -> Enter valid personal info (First Name, Last Name, Postal Code) -> Click Finish.
+- **TC-15 (Checkout with Valid Info):** - Steps: Add 2 items -> Click Cart -> Checkout -> Enter valid personal info (First Name, Last Name, Postal Code) -> Click Finish.
   - Assert: Final page displays with "Thank you for your order!" header
   - Selector: `[data-test="first-name"]`, `[data-test="last-name"]`, `[data-test="postal-code"]` for input fields
 - **TC-16 (Checkout with Invalid/Missing Info):** - Steps: Go to checkout -> Try to submit with missing or invalid personal info (empty fields or incorrect format) -> Verify error
@@ -66,21 +81,6 @@
 - **TC-18 (Complete Checkout & Back Home):** - Steps: Complete checkout flow with valid info -> Click "Finish" -> Verify success page -> Click "Back Home" button
   - Assert: Redirected to inventory page (`/inventory.html`) and cart is empty
   - Selector: `[data-test="back-to-products"]` or `.back-button` for back home button
-
-### [Section: Cart Management]
-- **TC-12 (Add to Cart):** - Steps: Click "Add to cart" button on a product -> Check cart badge updates
-  - Assert: Cart badge shows correct item count
-  - Selector: `[data-test="add-to-cart-..."]` for add buttons
-- **TC-13 (View Cart):** - Steps: Add item to cart -> Click cart icon -> Verify cart page loads
-  - Assert: Cart page displays, added product is visible with correct name and price
-  - Selector: `.shopping_cart_link` for cart button, `.cart_item_label` for product names
-- **TC-14 (Continue Shopping):** - Steps: On cart page -> Click "Continue Shopping" button -> Verify inventory page
-  - Assert: Redirected to `/inventory.html` and product list is visible
-  - Selector: `[data-test="continue-shopping"]` for continue button
-- **TC-15 (Remove from Cart):** - Steps: On cart page with items -> Click "Remove" button -> Verify item removed
-  - Assert: Item removed from cart and cart badge decreases
-  - Selector: `[data-test="remove-..."]` for remove buttons
----
 
 ## 5. Instructions for Copilot
 > "Please refer to this file when generating Playwright test scripts. Ensure all locators use [data-test] attributes if available. Group tests by Section into separate files."

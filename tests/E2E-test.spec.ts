@@ -24,9 +24,9 @@ test.describe('E2E Checkout Tests (Full POM)', () => {
   });
 
   /**
-   * TC-11: 정상 주문 완료 케이스
+   * TC-15: 정상 주문 완료 케이스
    */
-  test('TC-11 (Checkout Success) - 정상 정보 입력 후 주문 완료', async ({ page }) => {
+  test('TC-15 (Checkout Success) - 정상 정보 입력 후 주문 완료', async ({ page }) => {
     // 상품 추가 (InventoryPage)
     await inventoryPage.addToCart('sauce-labs-backpack');
     await inventoryPage.addToCart('sauce-labs-bike-light');

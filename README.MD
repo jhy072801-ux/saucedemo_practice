@@ -1,6 +1,6 @@
 ﻿# Playwright Test Project
 
-Sauce Demo(https://www.saucedemo.com/) 사이트를 대상으로 작성한 **Playwright + TypeScript 기반 E2E 테스트 자동화 프로젝트**입니다. 자동화에 AI툴 활용 연습을 하기 위해 기존에 작성한 프로젝트를 프롬프트화 시켜서 그대로 AI툴에게 작성을 시키고 TC나 코드에 오류가 있는 부분들을 직접 찾아 개선하는 방식으로 사용하여 프로젝트를 수행했습니다.
+Sauce Demo(https://www.saucedemo.com/) 사이트를 대상으로 작성한 **Playwright + TypeScript 기반 E2E 테스트 자동화 프로젝트**입니다. 자동화에 AI툴(GitHub Copilot Chat) 활용 연습을 하기 위해 기존에 작성한 프로젝트를 프롬프트화 시켜서 그대로 AI툴에게 작성을 시키고 TC나 코드에 오류가 있는 부분들을 직접 찾아 개선하는 방식으로 사용하여 프로젝트를 수행했습니다.
 
 로그인, 상품 정렬, 사이드바 메뉴, 장바구니, 체크아웃 플로우를 Page Object Model(POM) 구조로 검증합니다.
 

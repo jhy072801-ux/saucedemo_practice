@@ -21,14 +21,14 @@ test.describe('Cart Management Tests', () => {
     await loginPage.loginStandardUser();
   });
 
-  test('TC-12 (Add to Cart) - 제품 추가 후 카트 배지 증가 확인', async () => {
+  test('TC-11 (Add to Cart) - 제품 추가 후 카트 배지 증가 확인', async () => {
     await inventoryPage.addToCart('sauce-labs-backpack');
     
     await expect(inventoryPage.cartBadge).toBeVisible();
     await expect(inventoryPage.cartBadge).toHaveText('1');
   });
 
-  test('TC-13 (View Cart) - 카트 페이지 이동 및 상품 확인', async ({ page }) => {
+  test('TC-12 (View Cart) - 카트 페이지 이동 및 상품 확인', async ({ page }) => {
     await inventoryPage.addToCart('sauce-labs-backpack');
     await inventoryPage.addToCart('sauce-labs-bike-light');
     
@@ -40,7 +40,7 @@ test.describe('Cart Management Tests', () => {
     await expect(page.locator('.cart_item_label')).toContainText(['Sauce Labs Backpack', 'Sauce Labs Bike Light']);
   });
 
-  test('TC-14 (Continue Shopping) - 메인페이지로 복귀 확인', async ({ page }) => {
+  test('TC-13 (Continue Shopping) - 메인페이지로 복귀 확인', async ({ page }) => {
     await inventoryPage.addToCart('sauce-labs-backpack');
     await inventoryPage.goToCart();
     
@@ -50,7 +50,7 @@ test.describe('Cart Management Tests', () => {
     await expect(page.locator('.inventory_list')).toBeVisible();
   });
 
-  test('TC-15 (Remove from Cart) - 제품 제거 및 배지 업데이트 확인', async ({ page }) => {
+  test('TC-14 (Remove from Cart) - 제품 제거 및 배지 업데이트 확인', async ({ page }) => {
     await inventoryPage.addToCart('sauce-labs-backpack');
     await inventoryPage.addToCart('sauce-labs-bike-light');
     await inventoryPage.goToCart();
