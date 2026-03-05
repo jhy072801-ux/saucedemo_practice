@@ -61,6 +61,6 @@ npx playwright test --ui
 ```
 ## 6) 참고 문서
 - `QA_GUIDELINES.md`: 테스트 전략, 셀렉터 우선순위, TC 매핑 기준을 프롬프트로 작성함
-- 구글 스프레드 시트로 작성된 TC:
+- 구글 스프레드 시트로 작성된 TC: https://docs.google.com/spreadsheets/d/1T6SS4gyjt-b5zjlLFv7mbLCb-FLWSrWN/edit?usp=sharing&ouid=101449263364091012451&rtpof=true&sd=true
 
 ## 7) 발생한 문제점과 해결과정
