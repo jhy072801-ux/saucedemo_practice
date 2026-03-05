@@ -61,6 +61,12 @@ npx playwright test --ui
 ```
 ## 6) 참고 문서
 - `QA_GUIDELINES.md`: 테스트 전략, 셀렉터 우선순위, TC 매핑 기준을 프롬프트로 작성함
-- 구글 스프레드 시트로 작성된 TC: https://docs.google.com/spreadsheets/d/1T6SS4gyjt-b5zjlLFv7mbLCb-FLWSrWN/edit?usp=sharing&ouid=101449263364091012451&rtpof=true&sd=true
+- TC: https://docs.google.com/spreadsheets/d/1T6SS4gyjt-b5zjlLFv7mbLCb-FLWSrWN/edit?usp=sharing&ouid=101449263364091012451&rtpof=true&sd=true
 
 ## 7) 발생한 문제점과 해결과정
+
+- 1. 프롬프트 작성 시 TC를 세분화 하여 요청하지 않으면 세분화 된 TC를 만들어 주지 않음
+초기 TC는 로그인 테스트 시 실패의 여러 케이스가 하나의 케이스로 되어 있어 제대로된 테스트가 불가했음
+때문에 직접 실패 케이스를 추가로 분리하여 프롬프트로 제공했고 제대로 된 자동화 코드를 제공함
+
+- 2. 코딩 패턴과 정확한 요구를 프롬프트에 작성하지 않는다면 하드코딩으로 유지보수가 힘든 코드를 작성함

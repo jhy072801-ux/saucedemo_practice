@@ -51,18 +51,51 @@ test.describe('E2E Checkout Tests (Full POM)', () => {
   });
 
   /**
-   * TC-16a~d: 필수 정보 미입력 에러 검증 (통합형)
+   * TC-16a: First Name 필드 미입력 에러 메시지 검증
    */
-  test('TC-16 (Validation) - 필수 정보 누락 시 에러 메시지 확인', async ({ page }) => {
+  test('TC-16a (Validation) - First Name 누락 시 에러 메시지 확인', async ({ page }) => {
     await inventoryPage.addToCart('sauce-labs-backpack');
     await inventoryPage.goToCart();
     await page.locator('[data-test="checkout"]').click();
 
-    // First Name 누락 케이스만 대표로 확인
+    // First Name 누락
     await checkoutPage.fillInformation('', 'Doe', '12345');
     
+    // First Name 에러 메시지 검증
     await expect(checkoutPage.errorMsg).toBeVisible();
     await expect(checkoutPage.errorMsg).toContainText('First Name is required');
+  });
+
+  /**
+   * TC-16b: Last Name 필드 미입력 에러 메시지 검증
+   */
+  test('TC-16b (Validation) - Last Name 누락 시 에러 메시지 확인', async ({ page }) => {
+    await inventoryPage.addToCart('sauce-labs-backpack');
+    await inventoryPage.goToCart();
+    await page.locator('[data-test="checkout"]').click();
+
+    // Last Name 누락
+    await checkoutPage.fillInformation('John', '', '12345');
+    
+    // Last Name 에러 메시지 검증
+    await expect(checkoutPage.errorMsg).toBeVisible();
+    await expect(checkoutPage.errorMsg).toContainText('Last Name is required');
+  });
+
+  /**
+   * TC-16c: Postal Code 필드 미입력 에러 메시지 검증
+   */
+  test('TC-16c (Validation) - Postal Code 누락 시 에러 메시지 확인', async ({ page }) => {
+    await inventoryPage.addToCart('sauce-labs-backpack');
+    await inventoryPage.goToCart();
+    await page.locator('[data-test="checkout"]').click();
+
+    // Postal Code 누락
+    await checkoutPage.fillInformation('John', 'Doe', '');
+    
+    // Postal Code 에러 메시지 검증
+    await expect(checkoutPage.errorMsg).toBeVisible();
+    await expect(checkoutPage.errorMsg).toContainText('Postal Code is required');
   });
 
   /**
