@@ -59,13 +59,8 @@ playwright-test/
 npx playwright test
 npx playwright test --ui
 ```
-
-## 6) 환경 변수(.env)
-```env
-SAUCE_USERNAME=standard_user
-SAUCE_ACCESS_KEY=secret_sauce
-BASE_URL=https://www.saucedemo.com
-```
-
-## 7) 참고 문서
+## 6) 참고 문서
 - `QA_GUIDELINES.md`: 테스트 전략, 셀렉터 우선순위, TC 매핑 기준을 프롬프트로 작성함
+- 구글 스프레드 시트로 작성된 TC:
+
+## 7) 발생한 문제점과 해결과정
