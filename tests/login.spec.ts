@@ -26,7 +26,7 @@ test.describe('Login Tests', () => {
 
   test('TC-02 (Invalid Password) - 잘못된 비밀번호 입력 시 오류 메시지 확인', async ({ page }) => {
     // 잘못된 비밀번호로 로그인 시도
-    await loginPage.login(process.env.SAUCE_USERNAME ?? '', 'wrong_password');
+    await loginPage.login(process.env.SAUCE_USERNAME ?? '', 'secret_sauce');
     await expect(loginPage.errorMessage).toBeVisible();
     await expect(loginPage.errorMessage).toContainText(LOGIN_ERRORS.INVALID_MATCH);
   });
