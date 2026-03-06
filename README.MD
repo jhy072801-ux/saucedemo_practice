@@ -63,33 +63,7 @@ npx playwright test --ui
 - `QA_GUIDELINES.md`: 테스트 전략, 셀렉터 우선순위, TC 매핑 기준을 프롬프트로 작성함
 - TC: https://docs.google.com/spreadsheets/d/1T6SS4gyjt-b5zjlLFv7mbLCb-FLWSrWN/edit?usp=sharing&ouid=101449263364091012451&rtpof=true&sd=true
 
-## 7) GitHub Actions 연동 (CI/머지 차단/리포트 아티팩트)
-이 프로젝트에는 `.github/workflows/playwright.yml` 워크플로우가 추가되어 있습니다.
-
-- 트리거: `main` 브랜치 대상 `push`, `pull_request`
-- 실행: Playwright 테스트 자동 실행 (`npm run test:ci`)
-- 리포트 업로드: 테스트 성공/실패와 관계없이 `playwright-report`, `test-results` 아티팩트 업로드
-
-### GitHub Secrets
-아래 시크릿이 저장소 `Settings > Secrets and variables > Actions`에 등록되어 있어야 합니다.
-
-- `BASE_URL`
-- `SAUCE_USERNAME`
-- `SAUCE_ACCESS_KEY`
-
-### 머지 차단(필수)
-테스트 실패 시 머지를 막으려면 브랜치 보호 규칙에서 상태 체크를 필수로 지정해야 합니다.
-
-1. `Settings > Branches > Branch protection rules` 이동
-2. `main` 브랜치 규칙 생성/수정
-3. `Require status checks to pass before merging` 활성화
-4. 상태 체크에서 `Playwright Tests / E2E Test` 선택
-
-### 아티팩트 다운로드
-1. 저장소 `Actions` 탭에서 실행된 워크플로우 클릭
-2. 하단 `Artifacts` 영역에서 `playwright-report`, `test-results` 다운로드
-
-## 8) 발생한 문제점과 해결과정
+## 7) 발생한 문제점과 해결과정
 
 1. **TC 세분화 부족**
 프롬프트에서 TC를 세분화하여 요청하지 않으면, 세분화된 테스트 케이스가 생성되지 않았습니다.  
@@ -101,7 +75,7 @@ npx playwright test --ui
 초기 코드에는 에러 메시지 하드코딩과 중복 로직이 많아, 변경 시 전체 수정이 필요한 구조였습니다.  
 이를 개선하기 위해 POM(Page Object Model)을 도입해 페이지 단위로 기능을 분리하고, 메시지를 상수로 관리하여 재사용성과 유지보수성을 높였습니다.
 
-## 9) 프로젝트 후기
+## 8) 프로젝트 후기
 직접 코딩했을 때는 약 1주일이 걸린 프로젝트였지만, AI를 도입하면서 코드 작성은 약 2시간, 리팩터링은 약 4시간 만에 진행할 수 있었습니다.  
 AI 활용으로 개발 속도는 분명히 빨라졌지만, 프롬프트에서 요구사항을 구체적으로 전달하지 않으면 기대한 품질의 코드가 나오지 않는다는 점도 확인했습니다.  
 결과적으로 사용자(개발자)의 도메인 지식과 개발 지식이 오히려 더 중요해졌다는 점을 체감했습니다.

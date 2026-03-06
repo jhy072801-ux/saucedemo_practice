@@ -1,27 +1,14 @@
 import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config(); // dotenv로 .env 파일에서 환경 변수 로드 config 파일에서만 해주면 됨
 
 export default defineConfig({
-  testDir: './tests',
-  outputDir: 'test-results',
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: [
-    ['list'],
-    ['html', { outputFolder: 'playwright-report', open: 'never' }],
-    ['junit', { outputFile: 'test-results/junit.xml' }],
-  ],
   use: {
     baseURL: process.env.BASE_URL,
     headless: true,
-    trace: 'retain-on-failure',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
     launchOptions: {
-      slowMo: process.env.CI ? 0 : 100,
+      slowMo: 100,
     },
   },
 });
